@@ -1,10 +1,14 @@
 # Solo Configs
 
-Solo Configs is a simple PHP package for managing configuration settings in your application. It allows you to easily retrieve configuration values by key, and it supports fetching all configurations if no key is specified.
+Solo Configs is a simple PHP package for managing configuration settings in your application. It provides easy access to configuration values using dot notation and supports default values if a key is not found.
+
+## Requirements
+
+- PHP 8.1 or higher
 
 ## Installation
 
-You can install the package via Composer. Run the following command in your terminal:
+You can install the package via Composer:
 
 ```bash
 composer require solo/configs
@@ -12,13 +16,11 @@ composer require solo/configs
 
 ## Usage
 
-To use the `Configs` class, you first need to create an instance of it by passing an array of configurations. After that, you can retrieve specific configurations using the `get()` method or by accessing them as properties.
+Create an instance of `Configs` by passing an array of configurations. You can then retrieve values using dot notation or access them as properties.
 
-### Example
+### Basic Usage
 
 ```php
-require 'vendor/autoload.php';
-
 use Solo\Configs;
 
 // Create a new instance with your configurations
@@ -28,34 +30,82 @@ $configs = new Configs([
         'username' => 'root',
         'password' => 'secret',
     ],
-    'app_name' => 'My Application',
+    'app' => [
+        'name' => 'My Application',
+        'debug' => true,
+        'settings' => [
+            'timezone' => 'UTC'
+        ]
+    ]
 ]);
 
-// Get a specific configuration
-$dbHost = $configs->get('database')['host']; // 'localhost'
+// Get values using dot notation
+$dbHost = $configs->get('database.host');          // 'localhost'
+$appName = $configs->get('app.name');             // 'My Application'
+$timezone = $configs->get('app.settings.timezone'); // 'UTC'
 
-// Get all configurations
-$allConfigs = $configs->get(); // Returns the entire configs array
+// Using default values
+$cache = $configs->get('cache.enabled', false);    // false (using default)
+
+// Get entire sections
+$dbConfig = $configs->get('database');    // Returns entire database array
+$allConfigs = $configs->get();           // Returns all configurations
 
 // Using magic method
-$appName = $configs->app_name; // 'My Application'
+$appName = $configs->app_name;           // 'My Application'
 ```
 
-## Methods
+### Configuration Structure
 
-### `public function get(string $key = '')`
+Your configuration array can be as deeply nested as needed:
+
+```php
+$configs = new Configs([
+    'session' => [
+        'lifetime' => 86400,
+        'options' => [
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Lax'
+        ]
+    ],
+    'cache' => [
+        'driver' => 'redis',
+        'connection' => [
+            'host' => 'localhost',
+            'port' => 6379
+        ]
+    ]
+]);
+```
+
+## API Reference
+
+### `__construct(array $configs)`
+
+Creates a new Configs instance.
 
 - **Parameters:**
-    - `string $key` (optional): The configuration key to retrieve.
+  - `array $configs`: Configuration array
 
-- **Returns:** The configuration value(s) or `null` if not found.
+### `get(string $key = '', mixed $default = null): mixed`
 
-### `public function __get(string $key)`
+Retrieves a configuration value using dot notation.
 
 - **Parameters:**
-    - `string $key`: The configuration key to retrieve.
+  - `string $key`: Configuration key using dot notation (optional)
+  - `mixed $default`: Default value if key not found
 
-- **Returns:** The configuration value or `null` if not found.
+- **Returns:** Configuration value or default if not found
+
+### `__get(string $key): mixed`
+
+Magic method to access configurations as properties.
+
+- **Parameters:**
+  - `string $key`: Configuration key
+
+- **Returns:** Configuration value or null if not found
 
 ## License
 

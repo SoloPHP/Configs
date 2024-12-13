@@ -1,13 +1,21 @@
 {
   "name": "solophp/configs",
   "type": "library",
-  "description": "Managing configs stored in associative array",
-  "keywords": ["configs","php","array"],
+    "description": "Simple and flexible configuration management library with dot notation support",
+    "keywords": [
+        "configs",
+        "configuration",
+        "php",
+        "array",
+        "dot-notation",
+        "settings"
+    ],
   "license": "MIT",
   "authors": [
     {
       "name": "Vitaliy Olos",
-      "email": "vedastudio@gmail.com"
+            "email": "vedastudio@gmail.com",
+            "role": "Developer"
     }
   ],
   "autoload": {
@@ -16,7 +24,7 @@
     }
   },
   "require": {
-    "php": ">=7.4"
+    "php": ">=8.1"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
