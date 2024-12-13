@@ -81,31 +81,45 @@ $configs = new Configs([
 
 ## API Reference
 
-### `__construct(array $configs)`
+### Methods
+
+#### Constructor
+
+```php
+public function __construct(array $configs)
+```
 
 Creates a new Configs instance.
 
-- **Parameters:**
-  - `array $configs`: Configuration array
+**Parameters:**
+- `array $configs`: Configuration array
 
-### `get(string $key = '', mixed $default = null): mixed`
+#### Get Configuration Value
+
+```php
+public function get(string $key = '', mixed $default = null): mixed
+```
 
 Retrieves a configuration value using dot notation.
 
-- **Parameters:**
-  - `string $key`: Configuration key using dot notation (optional)
-  - `mixed $default`: Default value if key not found
+**Parameters:**
+- `string $key`: Configuration key using dot notation (optional)
+- `mixed $default`: Default value if key not found
 
-- **Returns:** Configuration value or default if not found
+**Returns:** Configuration value or default if not found
 
-### `__get(string $key): mixed`
+#### Magic Property Access
+
+```php
+public function __get(string $key): mixed
+```
 
 Magic method to access configurations as properties.
 
-- **Parameters:**
-  - `string $key`: Configuration key
+**Parameters:**
+- `string $key`: Configuration key
 
-- **Returns:** Configuration value or null if not found
+**Returns:** Configuration value or null if not found
 
 ## License
 
