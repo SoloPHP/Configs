@@ -11,7 +11,7 @@ Solo Configs is a simple PHP package for managing configuration settings in your
 You can install the package via Composer:
 
 ```bash
-composer require solo/configs
+composer require solophp/configs
 ```
 
 ## Usage
