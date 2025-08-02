@@ -1,7 +1,49 @@
-!.gitignore
-vendor
+# Dependencies
+/vendor/
 composer.lock
-example
-.idea
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+
+# PHPUnit
+.phpunit.cache/
+.phpunit.result.cache
+coverage/
+
+# PHP CodeSniffer
+.phpcs.cache
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+/build/
+/dist/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Example files
+example/
+examples/
