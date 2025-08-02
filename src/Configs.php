@@ -1,6 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Solo;
+declare(strict_types=1);
+
+namespace Solo\Configs;
 
 class Configs
 {

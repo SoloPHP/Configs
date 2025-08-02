@@ -1,5 +1,9 @@
 # Solo Configs
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/solophp/configs.svg)](https://packagist.org/packages/solophp/configs)
+[![License](https://img.shields.io/packagist/l/solophp/configs.svg)](https://github.com/solophp/configs/blob/main/LICENSE)
+[![PHP Version](https://img.shields.io/packagist/php-v/solophp/configs.svg)](https://packagist.org/packages/solophp/configs)
+
 Solo Configs is a simple PHP package for managing configuration settings in your application. It provides easy access to configuration values using dot notation and supports default values if a key is not found.
 
 ## Requirements
@@ -16,12 +20,12 @@ composer require solophp/configs
 
 ## Usage
 
-Create an instance of `Configs` by passing an array of configurations. You can then retrieve values using dot notation or access them as properties.
+Create an instance of `Configs` by passing an array of configurations. You can then retrieve values using dot notation.
 
 ### Basic Usage
 
 ```php
-use Solo\Configs;
+use Solo\Configs\Configs;
 
 // Create a new instance with your configurations
 $configs = new Configs([
@@ -51,8 +55,8 @@ $cache = $configs->get('cache.enabled', false);    // false (using default)
 $dbConfig = $configs->get('database');    // Returns entire database array
 $allConfigs = $configs->get();           // Returns all configurations
 
-// Using magic method
-$appName = $configs->app_name;           // 'My Application'
+// Note: Magic method access is limited in PHP due to property name restrictions
+// It's recommended to use the get() method directly for best compatibility
 ```
 
 ### Configuration Structure
@@ -114,12 +118,34 @@ Retrieves a configuration value using dot notation.
 public function __get(string $key): mixed
 ```
 
-Magic method to access configurations as properties.
+Magic method for property access (limited functionality in PHP).
 
 **Parameters:**
 - `string $key`: Configuration key
 
 **Returns:** Configuration value or null if not found
+
+**Note:** Due to PHP limitations with property names containing special characters, it's recommended to use the `get()` method directly.
+
+## Development
+
+### Running Tests
+
+```bash
+composer test
+```
+
+### Code Style
+
+Check code style:
+```bash
+composer cs
+```
+
+Fix code style:
+```bash
+composer cs-fix
+```
 
 ## License
 
