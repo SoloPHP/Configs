@@ -2,6 +2,7 @@
   "name": "solophp/configs",
   "type": "library",
   "description": "Simple and flexible configuration management library with dot notation support",
+  "abandoned": true,
   "keywords": [
     "configs",
     "configuration",
